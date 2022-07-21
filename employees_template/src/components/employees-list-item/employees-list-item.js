@@ -1,16 +1,23 @@
 import "./employees-list-item.css";
 
 const EmployeesListItem = ({
+  id,
   name,
   salary,
   onDelete,
   onToggleProp,
+  salaryChange,
   increase,
   rise,
 }) => {
   let classNames = "list-group-item d-flex justify-content-between";
   increase ? (classNames += " increase") : (classNames += "");
   rise ? (classNames += " like") : (classNames += "");
+
+  function onValueChange(e) {
+    salaryChange(id, e.target.value);
+  }
+  console.log(id);
 
   return (
     <li className={classNames}>
@@ -25,6 +32,7 @@ const EmployeesListItem = ({
         type="text"
         className="list-group-item-input"
         defaultValue={salary + "$"}
+        onInput={onValueChange}
       />
       <div className="d-flex justify-content-center align-items-center">
         <button type="button" className="btn-cookie btn-sm ">

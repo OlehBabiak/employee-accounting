@@ -67,6 +67,17 @@ function App() {
     setUserArr([...userArr, newEmployee]);
   }
 
+  function onSalaryChange(id, val) {
+    setUserArr([
+      ...userArr.map((el) => {
+        if (el.id === id) {
+          return { ...el, salary: val };
+        }
+        return el;
+      }),
+    ]);
+  }
+
   function onToggleProp(id, prop) {
     setUserArr([
       ...userArr.map((el) => {
@@ -90,6 +101,7 @@ function App() {
         data={visibleEmp}
         onDelete={deleteItem}
         onToggleProp={onToggleProp}
+        onSalaryChange={onSalaryChange}
       />
       <EmployeesAddForm onAdd={addItem} />
     </div>
